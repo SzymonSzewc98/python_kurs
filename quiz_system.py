@@ -19,3 +19,14 @@ class Question:
             print("Niepoprawna odpowiedź!")
             return False
 
+class Quiz:
+    def __init__(self):
+        self.question_list = []
+        self.current_question = 0
+    def add_question(self, question):
+        self.question_list.append(question)
+
+    def ask_next_question(self):
+        self.question_list[self.current_question].print_question()
+        self.current_question += 1
+
