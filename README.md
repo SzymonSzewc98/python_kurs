@@ -11,3 +11,4 @@ Requirements:
   Take the Quiz:
     Create a function for students to take the quiz, evaluate their answers, and display the score.
  
+  Question is implemented as a class
