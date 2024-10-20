@@ -48,6 +48,9 @@ class Quiz:
             self.current_question += 1
         else:
             self.test_finish()
+    def input_answer(self, index):
+        if self.question_list[self.current_question -1].check_if_is_true(index)
+            self.poprawne += 1
 
 
 handle_test_question()
