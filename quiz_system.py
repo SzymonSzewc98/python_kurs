@@ -7,6 +7,7 @@ def handle_test_question():
                                {"a": "Tak", "b": "Nie", "c": "Nie wiem",
                                 "d": "Nie ma tak, że dobrze albo że nie dobrze"}, "a"))
     quiz.ask_next_question()
+    quiz.ask_next_question()
 
 class Question:
     def __init__(self, question, answers, idx_of_true):
@@ -31,12 +32,22 @@ class Quiz:
     def __init__(self):
         self.question_list = []
         self.current_question = 0
+        self.poprawne = 0
+
+    def test_finish(self):
+        print("KONIEC!")
+        print("Ilość pytań: ", len(self.question_list))
+        print("Ilość poprawnych odpowiedzi: ", self.poprawne)
+
     def add_question(self, question):
         self.question_list.append(question)
 
     def ask_next_question(self):
-        self.question_list[self.current_question].print_question()
-        self.current_question += 1
+        if self.current_question < len(self.question_list):
+            self.question_list[self.current_question].print_question()
+            self.current_question += 1
+        else:
+            self.test_finish()
 
 
 handle_test_question()
