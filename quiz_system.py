@@ -6,13 +6,25 @@ b = "b"
 c = "c"
 d = "d"
 
-def handle_test_question():
+def debug_test_question():
     quiz = Quiz()
     quiz.add_question(Question("Jak to jest być skrybą, dobrze, czy niedobrze?",
                                {"a": "Tak", "b": "Nie", "c": "Nie wiem",
                                 "d": "Nie ma tak, że dobrze albo że nie dobrze"}, "d"))
     quiz.ask_next_question()
-    quiz.input_answer(input("__"))
+    quiz.input_answer(input(":"))
+    quiz.ask_next_question()
+
+def debug_instructor():
+    instructor = Instructor()
+    instructor.add_question()
+    quiz = instructor.get_quiz()
+    quiz.ask_next_question()
+    quiz.input_answer(input(":"))
+    quiz.ask_next_question()
+    quiz.input_answer(input(":"))
+    quiz.ask_next_question()
+    quiz.input_answer(input(":"))
     quiz.ask_next_question()
 
 class Question:
@@ -34,6 +46,7 @@ class Question:
             print("Niepoprawna odpowiedź!")
             return False
 
+
 class Quiz:
     def __init__(self):
         self.question_list = []
@@ -54,30 +67,37 @@ class Quiz:
             self.current_question += 1
         else:
             self.test_finish()
+
     def input_answer(self, index):
         if self.question_list[self.current_question -1].check_if_is_true(index):
             self.poprawne += 1
+
 
 class Instructor:
     def __init__(self):
         self.quiz = Quiz()
         questions = [
-                        Question("Ile to 2 + 2", {a : "5", b : "5", c : "4", d : "5"}, d),
+                        Question("Ile to 2 + 2", {a : "5", b : "5", c : "4", d : "5"}, c),
                         Question("Ile to 2 + 3", {a: "5", b: "2", c: "4", d: "1"}, a)
                     ]
         for question in questions:
             self.quiz.add_question(question)
 
     def add_question(self):
-        question = Question(input("Podaj pytanie"),
-                            {a : input("Podaj odpowiedz a:"), b : input("Podaj odpowiedz b:"),
-                                        c : input("Podaj odpowiedz c:"), d : input("Podaj odpowiedz d:") },
-                            input("Podaj poprawną odpowiedź:"))
+        self.quiz.add_question(
+                                    Question(input("Podaj pytanie"),
+                                        {a : input("Podaj odpowiedz a:"), b : input("Podaj odpowiedz b:"),
+                                                c : input("Podaj odpowiedz c:"), d : input("Podaj odpowiedz d:") },
+                                                input("Podaj poprawną odpowiedź:")
+                                             )
+                               )
 
     def get_quiz(self):
         return self.quiz
 
-handle_test_question()
+
+debug_test_question()
+debug_instructor()
 
 
 
