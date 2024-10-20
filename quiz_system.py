@@ -5,8 +5,9 @@ def handle_test_question():
     quiz = Quiz()
     quiz.add_question(Question("Jak to jest być skrybą, dobrze, czy niedobrze?",
                                {"a": "Tak", "b": "Nie", "c": "Nie wiem",
-                                "d": "Nie ma tak, że dobrze albo że nie dobrze"}, "a"))
+                                "d": "Nie ma tak, że dobrze albo że nie dobrze"}, "d"))
     quiz.ask_next_question()
+    quiz.input_answer(input("__"))
     quiz.ask_next_question()
 
 class Question:
@@ -49,7 +50,7 @@ class Quiz:
         else:
             self.test_finish()
     def input_answer(self, index):
-        if self.question_list[self.current_question -1].check_if_is_true(index)
+        if self.question_list[self.current_question -1].check_if_is_true(index):
             self.poprawne += 1
 
 
